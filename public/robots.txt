@@ -1,6 +1,10 @@
 # VentPro – ventilation services site
 User-agent: *
 Allow: /
+# Auth and dashboard are noindex via meta; disallow crawling
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
 
 # Sitemap (update origin when deploying)
 Sitemap: /sitemap.xml

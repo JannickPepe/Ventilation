@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import AtomLink from '@/components/atoms/Link.vue'
 import AtomButton from '@/components/atoms/Button.vue'
 import MoleculeSearch from '@/components/molecules/Search.vue'
 import { ROUTES } from '@/constants'
+import { useAuthStore } from '@/stores/authStore'
 import { useHeadingSearch } from '@/composables/useHeadingSearch'
+
+const router = useRouter()
+const authStore = useAuthStore()
+
+function logout() {
+  authStore.logout()
+  router.push(ROUTES.LOGIN.path)
+}
 
 const { query, results, loading, goToResult, clearResults } = useHeadingSearch()
 const searchFocused = ref(false)
@@ -85,7 +95,23 @@ function onSearchBlur() {
             </div>
           </div>
         </div>
-        <AtomButton variant="primary" size="sm">
+        <template v-if="authStore.isAuthenticated">
+          <AtomLink :to="ROUTES.DASHBOARD.path" variant="muted" size="sm">
+            {{ $t('auth.dashboard.title') }}
+          </AtomLink>
+          <AtomButton variant="outline" size="sm" aria-label="Log out of your account" @click="logout">
+            {{ $t('auth.dashboard.logout') }}
+          </AtomButton>
+        </template>
+        <template v-else>
+          <AtomLink :to="ROUTES.LOGIN.path" variant="muted" size="sm">
+            {{ $t('auth.login.title') }}
+          </AtomLink>
+          <AtomLink :to="ROUTES.REGISTER.path" variant="muted" size="sm">
+            {{ $t('auth.register.title') }}
+          </AtomLink>
+        </template>
+        <AtomButton variant="primary" size="sm" aria-label="Contact VentPro">
           {{ $t('home.header.contact') }}
         </AtomButton>
       </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
+import MoleculeToastContainer from '@/components/molecules/ToastContainer.vue'
 
 const route = useRoute()
 useHead({
@@ -11,6 +12,10 @@ useHead({
       content: () =>
         (route.meta.description as string) ??
         'Expert ventilation services for your home and business. Installation, repair, inspection and maintenance. Certified technicians.'
+    },
+    {
+      name: 'robots',
+      content: () => (route.meta.robots as string) ?? 'index, follow'
     }
   ]
 })
@@ -23,5 +28,8 @@ useHead({
   >
     Skip to main content
   </a>
-  <RouterView />
+  <div class="flex-1 flex flex-col min-h-0 min-w-0 w-full">
+    <RouterView :key="route.fullPath" />
+  </div>
+  <MoleculeToastContainer />
 </template>

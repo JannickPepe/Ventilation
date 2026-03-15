@@ -36,9 +36,15 @@
 - **Search**: Header search uses the backend to search over all heading (h1–h6) text; when the backend is running, results link to the matching section.
 - **FAQ**: FAQ section data is loaded from the backend (`GET /api/faq?locale=...`). The view triggers the store fetch; the FAQ organism only reads from the store. See [api.md](./api.md) (convention: new API = new store).
 
+## Auth (login, register, dashboard)
+
+- **Login / Register**: Nav links go to `/login` and `/register`. Validation is done on the backend; errors are shown in the UI via the ErrorMessage component. Email (only) is persisted in localStorage for form pre-fill; password is never stored.
+- **JWT**: Access token (1 hour) and refresh token (5 days). On 401 the client tries refresh; if that fails, user is logged out and redirected to login. After 5 days the user must sign in again to get a new token.
+- **Protected route**: `/dashboard` is protected by the `auth` router middleware. See [api.md](./api.md) (Auth API) and [ARCHITECTURE.md](./ARCHITECTURE.md) (Middleware).
+
 ## Git – seeing your name and email in history / blame
 
-`git blame` shows the **author of the last commit** that changed each line. To see your name and email (e.g. “Jannick Pedersen &lt;jannickpedersen@live.dk&gt;”):
+`git blame` shows the **author of the last commit** that changed each line. To see your name and email (e.g. “Bob Larsen &lt;boblarsen@live.dk&gt;”):
 
 1. Set your identity once (if not already):  
    `git config --global user.name "Your Name"`  

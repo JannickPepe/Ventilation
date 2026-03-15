@@ -4,6 +4,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createHead } from '@vueuse/head'
 import { MotionPlugin } from '@vueuse/motion'
 import { i18n, loadLocaleFromBackend, supportedLocales } from '@/i18n'
+import { useAuthStore } from '@/stores/authStore'
 import App from './App.vue'
 import router from './router'
 import './style.css'
@@ -18,6 +19,8 @@ app.use(head)
 app.use(i18n)
 app.use(router)
 app.use(MotionPlugin)
+
+useAuthStore(pinia).loadFromStorage()
 
 // Load locales from backend (source of truth) before first paint. Falls back to bundled if backend is down.
 const BACKEND_LOAD_MS = 3000

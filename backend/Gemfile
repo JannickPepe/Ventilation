@@ -6,3 +6,5 @@ gem 'sinatra', '~> 4.0'
 gem 'rackup'
 gem 'rack-cors'
 gem 'webrick'  # Rack server so rackup has a handler (required on Ruby 3.4+)
+gem 'jwt'
+gem 'bcrypt'

@@ -1,8 +1,12 @@
+import { useAuthStore } from '@/stores/authStore'
+import { ROUTES } from '@/constants'
 import type { Middleware } from './types'
 
 export const authMiddleware: Middleware = ({ next }) => {
-  // Example: check auth store
-  // const authStore = useAuthStore()
-  // if (!authStore.isAuthenticated) next('/login')
+  const authStore = useAuthStore()
+  if (!authStore.isAuthenticated) {
+    next(ROUTES.LOGIN.path)
+    return
+  }
   next()
 }

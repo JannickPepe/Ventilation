@@ -111,6 +111,36 @@
     },
     "copyright": "© VentPro. All rights reserved."
   },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?"
+    },
+    "register": {
+      "title": "Register",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?"
+    },
+    "fields": {
+      "email": "Email",
+      "emailPlaceholder": "you{'@'}example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "welcome": "Welcome, {email}.",
+      "logout": "Log out"
+    },
+    "toast": {
+      "loginFailed": "Sign in failed. Check your email and password.",
+      "loginSuccess": "Signed in successfully. Redirecting to dashboard.",
+      "registerFailed": "Registration failed. Please try again.",
+      "registerSuccess": "Account created. Redirecting to dashboard.",
+      "loggedOut": "You have been logged out."
+    }
+  },
   "common": {
     "language": "Language",
     "loading": "Loading..."

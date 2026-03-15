@@ -8,6 +8,8 @@ const props = withDefaults(
     shape?: 'rounded' | 'pill'
     disabled?: boolean
     type?: 'button' | 'submit' | 'reset'
+    /** Accessible label (use when slot is not descriptive, e.g. icon-only). Prefer visible slot text. */
+    ariaLabel?: string
     class?: string
   }>(),
   {
@@ -51,6 +53,7 @@ const classes = computed(
     :type="type"
     :class="classes"
     :disabled="disabled"
+    :aria-label="ariaLabel"
   >
     <slot />
   </button>

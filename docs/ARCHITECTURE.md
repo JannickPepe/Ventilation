@@ -13,7 +13,7 @@ Huso is a Vue 3 application built with a feature-based architecture, strict Type
 - **Strong TypeScript typing** – Strict mode enabled
 - **i18n** – vue-i18n with locale store (en, da)
 - **Lazy loading and code splitting** – Route-based + manual chunks
-- **Centralized error handling** – Global handler + API interceptors
+- **Centralized error handling** – Global handler + API interceptors; auth: JWT in API client (Bearer token, 401 → refresh or logout + redirect to login)
 - **Performance optimization** – Bundle analyzer, virtual scrolling ready
 
 ## Folder Structure
@@ -77,7 +77,7 @@ docs/              # Architecture, API, guidelines, Lighthouse/SEO, data-handlin
 
 ## Middleware
 
-Router middleware runs in `meta.middleware`. Add names like `auth` to protect routes.
+Router middleware runs in `meta.middleware`. Add names like `auth` to protect routes. The **auth** middleware checks `useAuthStore().isAuthenticated` (token present and not expired); if not authenticated, it redirects to the login route. Auth state is hydrated from localStorage on app init (`loadFromStorage()` in `main.ts`). Form pre-fill for login/register uses `utils/authFormStorage` (email only; password is never stored).
 
 ## Documentation
 

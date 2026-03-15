@@ -7,6 +7,8 @@ export { default as AtomDotSeparator } from './atoms/DotSeparator.vue'
 export { default as AtomDivider } from './atoms/Divider.vue'
 export { default as AtomBadge } from './atoms/Badge.vue'
 export { default as AtomInput } from './atoms/Input.vue'
+export { default as AtomErrorMessage } from './atoms/ErrorMessage.vue'
+export { default as AtomToastMessage } from './atoms/ToastMessage.vue'
 
 // Molecules
 export { default as MoleculeFilter } from './molecules/Filter.vue'
@@ -16,6 +18,7 @@ export { default as MoleculeModal } from './molecules/Modal.vue'
 export { default as MoleculeSlideover } from './molecules/Slideover.vue'
 export { default as MoleculeEmptyState } from './molecules/EmptyState.vue'
 export { default as MoleculeSectionHeader } from './molecules/SectionHeader.vue'
+export { default as MoleculeToastContainer } from './molecules/ToastContainer.vue'
 
 // Organisms - Home
 export { default as HomeHeader } from './organisms/home/HomeHeader.vue'

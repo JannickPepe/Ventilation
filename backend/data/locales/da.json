@@ -99,6 +99,36 @@
     "legal": { "title": "Juridisk", "privacy": "Privatlivspolitik", "terms": "Brugsbetingelser" },
     "copyright": "© VentPro. Alle rettigheder forbeholdes."
   },
+  "auth": {
+    "login": {
+      "title": "Log ind",
+      "submit": "Log ind",
+      "noAccount": "Har du ikke en konto?"
+    },
+    "register": {
+      "title": "Opret konto",
+      "submit": "Opret konto",
+      "hasAccount": "Har du allerede en konto?"
+    },
+    "fields": {
+      "email": "E-mail",
+      "emailPlaceholder": "dig{'@'}eksempel.dk",
+      "password": "Adgangskode",
+      "passwordPlaceholder": "Indtast adgangskode"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "welcome": "Velkommen, {email}.",
+      "logout": "Log ud"
+    },
+    "toast": {
+      "loginFailed": "Log ind mislykkedes. Tjek din e-mail og adgangskode.",
+      "loginSuccess": "Logget ind. Omdirigerer til dashboard.",
+      "registerFailed": "Registrering mislykkedes. Prøv igen.",
+      "registerSuccess": "Konto oprettet. Omdirigerer til dashboard.",
+      "loggedOut": "Du er blevet logget ud."
+    }
+  },
   "common": {
     "language": "Sprog",
     "loading": "Indlæser..."

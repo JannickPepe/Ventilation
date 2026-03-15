@@ -44,18 +44,20 @@ Default minimum score: **70** per category. Edit `scripts/lighthouse-check.mjs` 
 
 ### Dynamic meta (per route)
 
-- `@vueuse/head` in `App.vue` updates `<title>` and `<meta name="description">` from `route.meta`.
+- `@vueuse/head` in `App.vue` updates `<title>`, `<meta name="description">`, and `<meta name="robots">` from `route.meta`.
 - Set `title` and `description` on each route in `router/index.ts` (VentPro defaults in place).
+- **Login, register, dashboard** use `meta.robots: 'noindex, nofollow'` so they are not indexed; home uses default `index, follow`.
 
 ### robots.txt
 
 - Path: `public/robots.txt`.
 - `User-agent: *` with `Allow: /`.
+- `Disallow: /login`, `/register`, `/dashboard` so crawlers do not index auth/dashboard pages.
 - `Sitemap: /sitemap.xml` (relative; replace with full URL when deploying).
 
 ### Sitemap
 
-- `public/sitemap.xml` – static list of URLs (home). Update `<loc>` with your production origin when deploying.
+- `public/sitemap.xml` – static list of **indexable** URLs (home only). Login, register, and dashboard are noindex and omitted. Update `<loc>` with your production origin when deploying.
 
 ## Accessibility
 
@@ -64,6 +66,7 @@ Default minimum score: **70** per category. Edit `scripts/lighthouse-check.mjs` 
 - **Navigation** – Main nav and footer nav have `aria-label` (“Main navigation”, “Footer navigation”).
 - **Search** – Region has `role="search"` and `aria-label`; input has `aria-label` from `home.header.searchAriaLabel`; results list has `role="listbox"` and options `role="option"`; loading state has `role="status"` and `aria-live="polite"`.
 - **Decorative images** – Hero/CTA banners use `alt=""` and `aria-hidden="true"` where appropriate; informative images (ventilation concepts) use i18n `alt` text.
+- **Buttons** – `AtomButton` supports an optional `ariaLabel` prop for an explicit accessible name. Prefer visible label text (slot); use `ariaLabel` when the button is icon-only or to reinforce the action (e.g. “Sign in to your account”, “Log out of your account”). Each button should have a clear label for screen readers.
 
 ---
 
@@ -75,13 +78,21 @@ Uses Playwright to:
 
 1. Build the app
 2. Start preview server
-3. Hit key routes
-4. Check that core content and interactions work (e.g. language selector)
+3. Hit key routes (home, login, register)
+4. Check that core content, nav links, and interactions work (e.g. language selector)
 
 ### Writing smoke tests
 
-Tests live in `e2e/`. Add cases for:
+Tests live in `e2e/smoke.spec.ts`. Current coverage:
 
-- Each route loading
+- **Home** – main content and footer visible; heading contains VentPro/Expert/Ventilation.
+- **Login** – `/login` loads; heading “Log in”, email field, “Sign in” button visible.
+- **Register** – `/register` loads; heading “Register”, email field, “Create account” button visible.
+- **Nav** – from home, “Log in” and “Register” links visible; clicking them navigates to `/login` and `/register`.
+- **Language selector** – visible and main content remains after switching locale.
+
+Add further cases for:
+
+- Each new route loading
 - Critical links and buttons
-- Main user flows
+- Main user flows (e.g. login submission if needed)

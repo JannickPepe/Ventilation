@@ -10,7 +10,13 @@ import {
   faClock,
   faWrench,
   faClipboardCheck,
-  faInbox
+  faInbox,
+  faEnvelope,
+  faLock,
+  faUser,
+  faCircleExclamation,
+  faSpinner,
+  faTriangleExclamation
 } from '@fortawesome/free-solid-svg-icons'
 
 /**
@@ -29,6 +35,12 @@ export type IconName =
   | 'wrench'
   | 'clipboard-check'
   | 'inbox'
+  | 'envelope'
+  | 'lock'
+  | 'user'
+  | 'circle-exclamation'
+  | 'spinner'
+  | 'triangle-exclamation'
 
 const iconMap: Record<IconName, IconDefinition> = {
   close: faXmark,
@@ -41,7 +53,13 @@ const iconMap: Record<IconName, IconDefinition> = {
   clock: faClock,
   wrench: faWrench,
   'clipboard-check': faClipboardCheck,
-  inbox: faInbox
+  inbox: faInbox,
+  envelope: faEnvelope,
+  lock: faLock,
+  user: faUser,
+  'circle-exclamation': faCircleExclamation,
+  spinner: faSpinner,
+  'triangle-exclamation': faTriangleExclamation
 }
 
 /** Get Font Awesome icon definition by name. Falls back to close if not found. */

@@ -104,6 +104,20 @@ When you add a new API endpoint that the frontend consumes:
 
 Returns `{ items: FaqItem[] }` where each item has `id`, `question`, `answer`. Data is stored in the backend at `data/faq/{locale}.json`. The frontend uses `useFaqStore()` and fetches from the view (e.g. `HomeView`); the FAQ organism only reads from the store.
 
+## Auth API
+
+Authentication is JWT-based. The backend is the **source of truth for validation**; it returns validation errors in a consistent shape so the client can display them (e.g. via the ErrorMessage component).
+
+**Endpoints:**
+
+- **POST /api/auth/register** – Body: `{ email, password }`. Validates email (presence, format) and password (presence, min 8 chars). On validation error: **422** with `{ errors: { "email": ["..."], "password": ["..."] } }`. On success: **201** with `{ user: { id, email }, access_token, refresh_token, expires_in }`.
+- **POST /api/auth/login** – Body: `{ email, password }`. Validates presence. On invalid credentials: **401** with `{ error: "Invalid email or password" }`. On success: **200** with same shape as register.
+- **POST /api/auth/refresh** – Body: `{ refresh_token }`. Returns new `access_token`, `refresh_token`, and `expires_in` (or **401** if token invalid/expired).
+
+**Token behaviour:** Access token is short-lived (1 hour); refresh token lasts 5 days. The API client adds `Authorization: Bearer <access_token>` to requests. On **401**, the client tries refresh; if refresh fails, it clears auth and redirects to login. Login/register form data (email only, never password) can be persisted in localStorage for pre-fill; see `utils/authFormStorage.ts`.
+
+**Frontend:** `api/auth.ts` exposes `login`, `register`, `refresh`, and `getValidationErrors`. The auth store (`stores/authStore.ts`) holds token/user state and calls these; views trigger login/register from the store and display backend errors via `setErrors` and the ErrorMessage component.
+
 ## Environment
 
 Set `VITE_API_BASE_URL` in `.env`:

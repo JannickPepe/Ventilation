@@ -57,7 +57,7 @@ From the project root:
 npm run backend
 ```
 
-This starts the API at **http://localhost:3000**. Endpoints:
+This starts the API at **http://localhost:3000**. Gems include **jwt** and **bcrypt** for auth. Set `JWT_SECRET` in the environment for production (defaults to a dev-only secret). User data is stored in `backend/data/users.json` (created on first registration). Endpoints:
 
 | Endpoint | Description |
 |----------|-------------|
@@ -66,6 +66,9 @@ This starts the API at **http://localhost:3000**. Endpoints:
 | `GET /api/locales/:locale` | Locale JSON (e.g. `en`, `da`) – source of truth for frontend i18n |
 | `GET /api/search?q=...&locale=en` | Search headings by translated text; returns matches with `route`, `id`, `title` |
 | `GET /api/faq?locale=en` | FAQ items (question + answer) for the given locale |
+| `POST /api/auth/register` | Create account (body: `email`, `password`); returns JWT pair |
+| `POST /api/auth/login` | Sign in (body: `email`, `password`); returns JWT pair |
+| `POST /api/auth/refresh` | Exchange `refresh_token` for new access/refresh tokens |
 
 ## Run backend + frontend in one terminal
 

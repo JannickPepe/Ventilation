@@ -44,11 +44,11 @@ const hasItems = computed(() => items.value.length > 0)
         class="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800/50"
       >
         <button
+          :id="`faq-question-${item.id}`"
           type="button"
           class="w-full text-left px-5 py-4 flex items-center justify-between gap-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
           :aria-expanded="isOpen(item.id)"
           :aria-controls="`faq-answer-${item.id}`"
-          :id="`faq-question-${item.id}`"
           @click="toggle(item.id)"
         >
           <span class="font-medium text-gray-900 dark:text-white pr-4">

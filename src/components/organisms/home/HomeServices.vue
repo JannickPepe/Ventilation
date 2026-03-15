@@ -30,8 +30,8 @@ const services = [
     />
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <article
-        :id="`service-${svc.key}`"
         v-for="svc in services"
+        :id="`service-${svc.key}`"
         :key="svc.key"
         v-motion
         :initial="{ opacity: 0, y: 24 }"

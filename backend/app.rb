@@ -3,16 +3,23 @@
 require 'sinatra'
 require 'json'
 require 'rack/cors'
+require 'jwt'
+require 'bcrypt'
 
 DATA_DIR = File.expand_path('data', __dir__)
 LOCALES_DIR = File.join(DATA_DIR, 'locales')
 FAQ_DIR = File.join(DATA_DIR, 'faq')
 HEADINGS_FILE = File.join(DATA_DIR, 'headings.json')
+USERS_FILE = File.join(DATA_DIR, 'users.json')
+
+JWT_SECRET = ENV.fetch('JWT_SECRET', 'dev-secret-change-in-production')
+ACCESS_TOKEN_EXPIRY = 3600        # 1 hour
+REFRESH_TOKEN_EXPIRY = 5 * 24 * 3600  # 5 days
 
 use Rack::Cors do
   allow do
     origins '*'
-    resource '/api/*', headers: :any, methods: %i[get options]
+    resource '/api/*', headers: :any, methods: %i[get post put patch delete options]
   end
 end
 
@@ -99,6 +106,156 @@ get '/api/faq' do
 
   content_type :json
   { items: data }.to_json
+end
+
+# --- Auth helpers ---
+def parse_json_body
+  body = request.body.read
+  return {} if body.to_s.strip.empty?
+
+  JSON.parse(body)
+rescue JSON::ParserError
+  {}
+end
+
+def load_users
+  data = load_json(USERS_FILE)
+  data.is_a?(Array) ? data : []
+end
+
+def save_users(users)
+  File.write(USERS_FILE, JSON.pretty_generate(users))
+end
+
+def validate_email(email)
+  err = []
+  err << 'can\'t be blank' if email.to_s.strip.empty?
+  err << 'is invalid' if email.to_s.strip != '' && !email.to_s.match?(/\A[^@\s]+@[^@\s]+\.[^@\s]+\z/)
+  err
+end
+
+def validate_password(password, for_register: false)
+  err = []
+  err << 'can\'t be blank' if password.to_s.empty?
+  err << 'is too short (minimum 8 characters)' if for_register && password.to_s.length < 8 && !password.to_s.empty?
+  err
+end
+
+def find_user_by_email(email)
+  load_users.find { |u| u['email'].to_s.downcase == email.to_s.strip.downcase }
+end
+
+def create_user(email, password)
+  users = load_users
+  id = (users.map { |u| u['id'].to_i }.max || 0) + 1
+  user = {
+    'id' => id,
+    'email' => email.to_s.strip.downcase,
+    'password_digest' => BCrypt::Password.create(password),
+    'created_at' => Time.now.utc.iso8601
+  }
+  users << user
+  save_users(users)
+  user
+end
+
+def issue_access_token(user_id)
+  payload = { sub: user_id, exp: Time.now.to_i + ACCESS_TOKEN_EXPIRY, type: 'access' }
+  JWT.encode(payload, JWT_SECRET, 'HS256')
+end
+
+def issue_refresh_token(user_id)
+  payload = { sub: user_id, exp: Time.now.to_i + REFRESH_TOKEN_EXPIRY, type: 'refresh' }
+  JWT.encode(payload, JWT_SECRET, 'HS256')
+end
+
+def decode_refresh_token(token)
+  payload, = JWT.decode(token, JWT_SECRET, true, algorithm: 'HS256')
+  payload if payload && payload['type'] == 'refresh'
+rescue JWT::DecodeError
+  nil
+end
+
+def json_response(status, body)
+  [status, { 'Content-Type' => 'application/json' }, [body.to_json]]
+end
+
+# POST /api/auth/register
+post '/api/auth/register' do
+  content_type :json
+  data = parse_json_body
+  email = data['email'].to_s.strip
+  password = data['password'].to_s
+
+  errors = {}
+  errors['email'] = validate_email(email) if validate_email(email).any?
+  errors['password'] = validate_password(password, for_register: true) if validate_password(password, for_register: true).any?
+  if find_user_by_email(email)
+    errors['email'] ||= []
+    errors['email'] << 'is already taken'
+  end
+  halt *json_response(422, { errors: errors }) if errors.any?
+
+  user = create_user(email, password)
+  access_token = issue_access_token(user['id'])
+  refresh_token = issue_refresh_token(user['id'])
+  return json_response(201, {
+    user: { id: user['id'], email: user['email'] },
+    access_token: access_token,
+    refresh_token: refresh_token,
+    expires_in: ACCESS_TOKEN_EXPIRY
+  })
+end
+
+# POST /api/auth/login
+post '/api/auth/login' do
+  content_type :json
+  data = parse_json_body
+  email = data['email'].to_s.strip
+  password = data['password'].to_s
+
+  errors = {}
+  errors['email'] = validate_email(email) if validate_email(email).any?
+  errors['password'] = validate_password(password) if validate_password(password).any?
+  halt *json_response(422, { errors: errors }) if errors.any?
+
+  user = find_user_by_email(email)
+  halt *json_response(401, { error: 'Invalid email or password' }) unless user
+  halt *json_response(401, { error: 'Invalid email or password' }) unless BCrypt::Password.new(user['password_digest']) == password
+
+  access_token = issue_access_token(user['id'])
+  refresh_token = issue_refresh_token(user['id'])
+  return json_response(200, {
+    user: { id: user['id'], email: user['email'] },
+    access_token: access_token,
+    refresh_token: refresh_token,
+    expires_in: ACCESS_TOKEN_EXPIRY
+  })
+end
+
+# POST /api/auth/refresh
+post '/api/auth/refresh' do
+  content_type :json
+  data = parse_json_body
+  refresh_token = data['refresh_token'].to_s
+  halt *json_response(401, { error: 'Invalid or expired refresh token' }) if refresh_token.empty?
+
+  payload = decode_refresh_token(refresh_token)
+  halt *json_response(401, { error: 'Invalid or expired refresh token' }) unless payload
+
+  user_id = payload['sub']
+  users = load_users
+  user = users.find { |u| u['id'].to_i == user_id.to_i }
+  halt *json_response(401, { error: 'User not found' }) unless user
+
+  access_token = issue_access_token(user['id'])
+  new_refresh_token = issue_refresh_token(user['id'])
+  return json_response(200, {
+    user: { id: user['id'], email: user['email'] },
+    access_token: access_token,
+    refresh_token: new_refresh_token,
+    expires_in: ACCESS_TOKEN_EXPIRY
+  })
 end
 
 get '/api/health' do

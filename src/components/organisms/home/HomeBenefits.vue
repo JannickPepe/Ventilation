@@ -28,8 +28,8 @@ const benefits = [
     />
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <div
-        :id="`benefit-${ben.key}`"
         v-for="ben in benefits"
+        :id="`benefit-${ben.key}`"
         :key="ben.key"
         v-motion
         :initial="{ opacity: 0, y: 20 }"
