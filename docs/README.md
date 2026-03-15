@@ -34,6 +34,18 @@
 - Default: English. `useLocaleStore()` for locale state (persisted).
 - Use `t('key')` or `$t('key')` in templates.
 - **Search**: Header search uses the backend to search over all heading (h1–h6) text; when the backend is running, results link to the matching section.
+- **FAQ**: FAQ section data is loaded from the backend (`GET /api/faq?locale=...`). The view triggers the store fetch; the FAQ organism only reads from the store. See [api.md](./api.md) (convention: new API = new store).
+
+## Git – seeing your name and email in history / blame
+
+`git blame` shows the **author of the last commit** that changed each line. To see your name and email (e.g. “Jannick Pedersen &lt;jannickpedersen@live.dk&gt;”):
+
+1. Set your identity once (if not already):  
+   `git config --global user.name "Your Name"`  
+   `git config --global user.email "your@email.com"`
+2. **Commit your changes.** Uncommitted edits are not in history, so they never appear in blame. After you commit, `git blame` on the updated lines will show you as the author.
+
+So the diff you have in the editor will only show up in blame after you run `git add` and `git commit`.
 
 ## Commit workflow (Husky + lint-staged)
 

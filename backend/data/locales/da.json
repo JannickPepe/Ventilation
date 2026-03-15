@@ -7,7 +7,8 @@
       "services": "Services",
       "about": "Om os",
       "contact": "Kontakt",
-      "searchPlaceholder": "Søg..."
+      "searchPlaceholder": "Søg...",
+      "searchAriaLabel": "Søg i sidesektioner efter overskrifter"
     },
     "hero": {
       "badge": "Professionel Ventilation",
@@ -46,6 +47,9 @@
     "benefits": {
       "title": "Hvorfor Vælge Os",
       "subtitle": "Kvalitetsservice du kan stole på.",
+      "healthBlockTitle": "Systemet og videnskaben",
+      "healthBlockDesc": "Balanceret luftudskiftning, varmegenvinding og optimal fugt understøtter forebygelse af skimmel, energieffektivitet og bedre sundhed.",
+      "healthBlockImgAlt": "Diagram: balanceret luftudskiftning, varmegenvinding og centrale videnskabelige fordele inkl. bedre sundhed.",
       "items": {
         "certified": {
           "title": "Certificerede Teknikere",
@@ -68,8 +72,32 @@
     "cta": {
       "title": "Klar til at Forbedre Din Luftkvalitet?",
       "subtitle": "Kontakt os i dag for en gratis konsultation og tilbud.",
-      "button": "Kontakt Os"
+      "button": "Kontakt Os",
+      "coverImgAlt": "Infografik om boligventilation: luftudskiftning og flow, hele-hus MVHR-system, fordele ved god ventilation som filtreret luft og fugtkontrol, faldgruber ved utilstrækkelig ventilation inkl. skimmel og fanget forurening, samt systemvidenskab med varmegenvinding op til 90% effektivitet.",
+      "ctaImgAlt": "Diagram: Ventilation i gang – hele-hus MVHR-system med tilluft og afluft, varmegenvindingsenhed og kontinuerlig cyklus for bedre sundhed og komfort."
+    },
+    "faq": { "title": "Ofte stillede spørgsmål", "subtitle": "Korte svar om ventilation og vores services." },
+    "ventilationConcepts": {
+      "title": "Sund Boligventilation",
+      "subtitle": "Forstå luftudskiftning, fordele og hvorfor god ventilation betyder noget.",
+      "airExchangeTitle": "Luftudskiftning og Flow",
+      "airExchangeAlt": "Diagram over kontinuerlig luftudskiftning og tilluft vs. afluft",
+      "airExchangeDesc": "Kontinuerlig cyklus af frisk luft ind og brugt luft ud. ACH (luftskift per time) holder indeklimaet sundt.",
+      "pitfallsTitle": "Faldgruber ved Utilstrækkelig Ventilation",
+      "pitfallsAlt": "Årsager og konsekvenser af dårlig ventilation i et tæt hus",
+      "pitfallsDesc": "Fanget forurenende stoffer, overskydende fugt og sundhedseffekter. God ventilation forhindrer disse problemer.",
+      "systemScienceImgAlt": "Diagram: balanceret luftudskiftning, varmegenvinding og centrale videnskabelige fordele inkl. bedre sundhed.",
+      "systemScienceTitle": "Systemet og videnskaben",
+      "systemScienceDesc": "Balanceret luftudskiftning, varmegenvinding og optimal fugt understøtter forebygelse af skimmel, energieffektivitet og bedre sundhed."
     }
+  },
+  "footer": {
+    "logo": "VentPro",
+    "tagline": "Ekspert ventilationsservice til hjem og erhverv.",
+    "nav": { "title": "Navigation" },
+    "contact": { "title": "Kontakt", "text": "Kontakt os for en gratis konsultation og tilbud." },
+    "legal": { "title": "Juridisk", "privacy": "Privatlivspolitik", "terms": "Brugsbetingelser" },
+    "copyright": "© VentPro. Alle rettigheder forbeholdes."
   },
   "common": {
     "language": "Sprog",

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Huso is a large-scale Vue 3 application built with a feature-based architecture, strict TypeScript, and performance best practices.
+Huso is a Vue 3 application built with a feature-based architecture, strict TypeScript, and performance best practices. The current home page showcases **VentPro** (ventilation services): hero with banner, services, benefits, ventilation concepts, FAQ (data from API), CTA, and a site footer. SEO, accessibility (skip link, ARIA, landmarks), and a Ruby backend for locales and heading search are set up.
 
 ## Key Focus Areas
 
@@ -22,7 +22,7 @@ Huso is a large-scale Vue 3 application built with a feature-based architecture,
 src/
 ├── api/           # HTTP client, resource factories
 ├── assets/        # Images, fonts
-├── components/    # Atomic design (atoms, molecules, organisms, templates)
+├── components/    # Atomic design (atoms, molecules, organisms, templates e.g. AppFooter)
 ├── constants/     # App constants
 ├── core/          # Error handler (handleError, setErrorHandler)
 ├── composables/   # Vue composables
@@ -38,7 +38,7 @@ src/
 
 e2e/               # Playwright smoke tests
 scripts/           # Build scripts (e.g. lighthouse-check.mjs)
-docs/              # Architecture, API, guidelines, Lighthouse/SEO, data-handling
+docs/              # Architecture, API, guidelines, Lighthouse/SEO, data-handling, ruby-setup
 ```
 
 ## Linting & Code Quality
@@ -59,10 +59,11 @@ docs/              # Architecture, API, guidelines, Lighthouse/SEO, data-handlin
 
 ## State Management (Pinia Best Practices)
 
-- Modular stores by domain (app, locale, resources)
+- Modular stores by domain (app, locale, faq, resources)
 - Separate state, actions, getters
 - Pinia persistence plugin for hydration
-- API logic in services/composables, not stores
+- **New API = new store resource:** When adding a new API endpoint, create a dedicated store that performs the fetch. The UI component only reads from the store; the view (or parent) triggers the store’s fetch so the component stays free of API calls. See [api.md](./api.md).
+- API logic in services/composables or stores (stores for domain-specific fetch-and-hold, e.g. FAQ)
 - Use `createResourceStore` for CRUD resources
 
 ## Performance
@@ -83,5 +84,6 @@ Router middleware runs in `meta.middleware`. Add names like `auth` to protect ro
 - [ARCHITECTURE.md](./ARCHITECTURE.md) – This file
 - [api.md](./api.md) – API layer
 - [coding-guidelines.md](./coding-guidelines.md) – Conventions
-- [lighthouse-seo.md](./lighthouse-seo.md) – Lighthouse, SEO, smoke tests
+- [lighthouse-seo.md](./lighthouse-seo.md) – Lighthouse, SEO, accessibility, smoke tests
 - [data-handling.md](./data-handling.md) – Utils and composables for API and data
+- [ruby-setup.md](./ruby-setup.md) – Ruby backend (locales + search)

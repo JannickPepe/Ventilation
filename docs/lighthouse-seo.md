@@ -37,24 +37,33 @@ Default minimum score: **70** per category. Edit `scripts/lighthouse-check.mjs` 
 
 ### Meta tags (index.html)
 
-- `description`, `theme-color`
-- Open Graph: `og:title`, `og:description`, `og:type`
-- `robots`: `index, follow`
+- **description** – VentPro-focused: ventilation services, installation, repair, inspection, maintenance, air quality.
+- **theme-color** – `#7c3aed` (violet, matches brand).
+- **Open Graph** – `og:title`, `og:description`, `og:type` for sharing.
+- **robots** – `index, follow`.
 
 ### Dynamic meta (per route)
 
-- `@vueuse/head` updates `<title>` and `<meta name="description">` from `route.meta`
-- Add `title` and `description` to each route’s `meta` in `router/index.ts`
+- `@vueuse/head` in `App.vue` updates `<title>` and `<meta name="description">` from `route.meta`.
+- Set `title` and `description` on each route in `router/index.ts` (VentPro defaults in place).
 
 ### robots.txt
 
-- Path: `public/robots.txt`
-- Allows all crawlers; adjust `Allow`/`Disallow` as needed
-- Update `Sitemap` URL when you have a sitemap
+- Path: `public/robots.txt`.
+- `User-agent: *` with `Allow: /`.
+- `Sitemap: /sitemap.xml` (relative; replace with full URL when deploying).
 
 ### Sitemap
 
-For SPAs, sitemaps are often generated at build time or served by the backend. Add a `sitemap.xml` to `public/` and reference it in `robots.txt` once you have it.
+- `public/sitemap.xml` – static list of URLs (home). Update `<loc>` with your production origin when deploying.
+
+## Accessibility
+
+- **Skip link** – “Skip to main content” (visible on focus) in `App.vue`; targets `#main-content`.
+- **Landmarks** – `<header role="banner">`, `<main id="main-content" role="main">`, `<footer role="contentinfo">`.
+- **Navigation** – Main nav and footer nav have `aria-label` (“Main navigation”, “Footer navigation”).
+- **Search** – Region has `role="search"` and `aria-label`; input has `aria-label` from `home.header.searchAriaLabel`; results list has `role="listbox"` and options `role="option"`; loading state has `role="status"` and `aria-live="polite"`.
+- **Decorative images** – Hero/CTA banners use `alt=""` and `aria-hidden="true"` where appropriate; informative images (ventilation concepts) use i18n `alt` text.
 
 ---
 

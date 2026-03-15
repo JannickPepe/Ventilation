@@ -11,13 +11,15 @@ const props = withDefaults(
     size?: 'sm' | 'md' | 'lg'
     error?: boolean
     class?: string
+    ariaLabel?: string
   }>(),
   {
     type: 'text',
     placeholder: '',
     disabled: false,
     size: 'md',
-    error: false
+    error: false,
+    ariaLabel: undefined
   }
 )
 
@@ -39,6 +41,7 @@ const classes = computed(
     :type="type"
     :placeholder="placeholder"
     :disabled="disabled"
+    :aria-label="ariaLabel"
     :class="classes"
   />
 </template>

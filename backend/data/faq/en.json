@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "question": "What is MVHR and how does it work?",
+    "answer": "Mechanical Ventilation with Heat Recovery (MVHR) continuously supplies fresh, filtered air and extracts stale air. A heat exchanger recovers warmth from the outgoing air to preheat incoming air, improving comfort and energy efficiency."
+  },
+  {
+    "id": "2",
+    "question": "How often should I service my ventilation system?",
+    "answer": "We recommend an annual service: filter replacement, duct check, and unit inspection. Systems in dusty or humid environments may need more frequent filter changes."
+  },
+  {
+    "id": "3",
+    "question": "Can you install ventilation in an existing home?",
+    "answer": "Yes. We install MVHR and other systems in existing buildings. Duct routes are planned to minimise disruption; retrofit options are tailored to your property."
+  },
+  {
+    "id": "4",
+    "question": "What warranty do you offer?",
+    "answer": "Work is covered by our standard warranty. Equipment warranty depends on the manufacturer—we only install quality units and can outline terms before installation."
+  }
+]

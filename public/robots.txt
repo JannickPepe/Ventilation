@@ -1,4 +1,6 @@
+# VentPro – ventilation services site
 User-agent: *
 Allow: /
 
-Sitemap: https://example.com/sitemap.xml
+# Sitemap (update origin when deploying)
+Sitemap: /sitemap.xml

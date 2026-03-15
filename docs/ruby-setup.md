@@ -65,6 +65,7 @@ This starts the API at **http://localhost:3000**. Endpoints:
 | `GET /api/locales` | List available locale codes |
 | `GET /api/locales/:locale` | Locale JSON (e.g. `en`, `da`) – source of truth for frontend i18n |
 | `GET /api/search?q=...&locale=en` | Search headings by translated text; returns matches with `route`, `id`, `title` |
+| `GET /api/faq?locale=en` | FAQ items (question + answer) for the given locale |
 
 ## Run backend + frontend in one terminal
 
@@ -93,11 +94,15 @@ backend/
     ├── locales/
     │   ├── en.json
     │   └── da.json
+    ├── faq/
+    │   ├── en.json
+    │   └── da.json
     └── headings.json
 ```
 
 - **data/locales/** – Locale JSON files; edit these to change copy. The frontend loads them at startup and when switching language.
 - **data/headings.json** – Index of every heading (h1–h6) that should be searchable: `key` (i18n key), `tag`, `route`, `id` (fragment for scroll-to). When you add new headings on the frontend, add a corresponding entry here so search works.
+- **data/faq/** – FAQ JSON per locale (`en.json`, `da.json`). Each file is an array of `{ "id": "1", "question": "...", "answer": "..." }`. Served by `GET /api/faq?locale=...`.
 
 ## Without the backend
 

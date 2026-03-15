@@ -90,6 +90,20 @@ class UserService extends BaseService {
 }
 ```
 
+## Convention: new API = new store resource
+
+When you add a new API endpoint that the frontend consumes:
+
+1. Add the API function in **api/** (e.g. `api/faq.ts`).
+2. Create a **Pinia store** that fetches via that API and holds state (e.g. `stores/faqStore.ts`). The store performs the request; **do not fetch inside the UI component**.
+3. Optionally add a **composable** (e.g. `useFaq()`) that exposes store state and a method to ensure data is loaded; the **view** (or a parent) calls that method so the component only reads from the store.
+
+## FAQ API
+
+**Endpoint:** `GET /api/faq?locale=en`
+
+Returns `{ items: FaqItem[] }` where each item has `id`, `question`, `answer`. Data is stored in the backend at `data/faq/{locale}.json`. The frontend uses `useFaqStore()` and fetches from the view (e.g. `HomeView`); the FAQ organism only reads from the store.
+
 ## Environment
 
 Set `VITE_API_BASE_URL` in `.env`:

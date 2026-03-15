@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "question": "Hvad er MVHR og hvordan virker det?",
+    "answer": "Mekanisk ventilation med varmegenvinding (MVHR) tilfører kontinuerligt frisk, filtreret luft og fjerner brugt luft. En varmeveksler genvinder varme fra den udgående luft og forvarmer den indkommende luft, hvilket forbedrer komfort og energieffektivitet."
+  },
+  {
+    "id": "2",
+    "question": "Hvor ofte bør jeg få serviceret mit ventilationsanlæg?",
+    "answer": "Vi anbefaler et årligt service: filterudskiftning, kanalkontrol og inspektion af enheden. Anlæg i støvede eller fugtige omgivelser kan have brug for oftere filterskift."
+  },
+  {
+    "id": "3",
+    "question": "Kan I installere ventilation i en eksisterende bolig?",
+    "answer": "Ja. Vi installerer MVHR og andre systemer i eksisterende bygninger. Kanalføring planlægges for at minimere ulejlighed; eftermontering tilpasses din ejendom."
+  },
+  {
+    "id": "4",
+    "question": "Hvilken garanti tilbyder I?",
+    "answer": "Arbejdet er dækket af vores standardgaranti. Udstyrsgaranti afhænger af fabrikanten—vi monterer kun kvalitetsenheder og kan beskrive vilkår før installation."
+  }
+]

@@ -7,11 +7,13 @@ withDefaults(
     modelValue?: string
     placeholder?: string
     size?: 'sm' | 'md' | 'lg'
+    ariaLabel?: string
   }>(),
   {
     modelValue: '',
     placeholder: 'Search...',
-    size: 'md'
+    size: 'md',
+    ariaLabel: undefined
   }
 )
 defineEmits<{
@@ -21,13 +23,14 @@ defineEmits<{
 
 <template>
   <div class="relative">
-    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true">
       <AtomIcon name="search" :size="size === 'lg' ? 'lg' : size === 'sm' ? 'sm' : 'md'" />
     </span>
     <AtomInput
       :model-value="modelValue"
       :placeholder="placeholder"
       :size="size"
+      :aria-label="ariaLabel"
       class="pl-10"
       @update:model-value="$emit('update:modelValue', $event)"
     />

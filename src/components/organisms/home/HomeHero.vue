@@ -7,6 +7,8 @@ import { useLocaleStore } from '@/stores/localeStore'
 import { supportedLocales } from '@/i18n'
 
 const localeStore = useLocaleStore()
+
+import heroBanner from '@/assets/images/ventilation-banner-pro.png'
 </script>
 
 <template>
@@ -23,36 +25,48 @@ const localeStore = useLocaleStore()
       :initial="{ opacity: 0, y: 30 }"
       :enter="{ opacity: 1, y: 0 }"
       transition="transition-all duration-700 ease-out"
-      class="max-w-4xl"
+      class="flex flex-col lg:flex-row lg:items-center lg:gap-12"
     >
-      <AtomBadge variant="default" size="sm" class="mb-4">
-        {{ $t('home.hero.badge') }}
-      </AtomBadge>
-      <AtomTitle as="h1" size="3xl" class="mb-4">
-        {{ $t('home.hero.title') }}
-      </AtomTitle>
-      <AtomTitle tag="p" size="lg" color="muted" class="mb-8">
-        {{ $t('home.hero.subtitle') }}
-      </AtomTitle>
-      <div class="flex flex-wrap gap-4 items-center">
-        <AtomButton variant="primary" size="lg">
-          {{ $t('home.hero.cta') }}
-        </AtomButton>
-        <AtomLink :to="'#'" variant="muted">
-          {{ $t('home.hero.secondary') }}
-        </AtomLink>
-        <span class="text-sm text-gray-500 dark:text-gray-400">
-          {{ $t('common.language') }}:
-        </span>
-        <select
-          :value="localeStore.locale"
-          class="border rounded-lg px-3 py-1.5 bg-transparent dark:border-gray-600"
-          @change="localeStore.setLocale(($event.target as HTMLSelectElement).value as 'en' | 'da')"
+      <div class="max-w-xl flex-shrink-0">
+        <AtomBadge variant="default" size="sm" class="mb-4">
+          {{ $t('home.hero.badge') }}
+        </AtomBadge>
+        <AtomTitle as="h1" size="3xl" class="mb-4">
+          {{ $t('home.hero.title') }}
+        </AtomTitle>
+        <AtomTitle tag="p" size="lg" color="muted" class="mb-8">
+          {{ $t('home.hero.subtitle') }}
+        </AtomTitle>
+        <div class="flex flex-wrap gap-4 items-center">
+          <AtomButton variant="primary" size="lg">
+            {{ $t('home.hero.cta') }}
+          </AtomButton>
+          <AtomLink :to="'#'" variant="muted">
+            {{ $t('home.hero.secondary') }}
+          </AtomLink>
+          <span class="text-sm text-gray-500 dark:text-gray-400">
+            {{ $t('common.language') }}:
+          </span>
+          <select
+            :value="localeStore.locale"
+            class="border rounded-lg px-3 py-1.5 bg-transparent dark:border-gray-600"
+            @change="localeStore.setLocale(($event.target as HTMLSelectElement).value as 'en' | 'da')"
+          >
+            <option v-for="loc in supportedLocales" :key="loc" :value="loc">
+              {{ loc === 'en' ? 'English' : 'Dansk' }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        class="mt-10 lg:mt-0 flex-1 min-w-0 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
+        aria-hidden="true"
+      >
+        <img
+          :src="heroBanner"
+          alt=""
+          class="w-full h-auto object-cover"
         >
-          <option v-for="loc in supportedLocales" :key="loc" :value="loc">
-            {{ loc === 'en' ? 'English' : 'Dansk' }}
-          </option>
-        </select>
       </div>
     </div>
   </section>

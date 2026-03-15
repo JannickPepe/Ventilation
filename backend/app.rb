@@ -6,6 +6,7 @@ require 'rack/cors'
 
 DATA_DIR = File.expand_path('data', __dir__)
 LOCALES_DIR = File.join(DATA_DIR, 'locales')
+FAQ_DIR = File.join(DATA_DIR, 'faq')
 HEADINGS_FILE = File.join(DATA_DIR, 'headings.json')
 
 use Rack::Cors do
@@ -85,6 +86,19 @@ get '/api/search' do
 
   content_type :json
   { results: results }.to_json
+end
+
+# GET /api/faq?locale=en — FAQ items (question + answer) for the given locale
+get '/api/faq' do
+  locale = params['locale'] || 'en'
+  path = File.join(FAQ_DIR, "#{locale}.json")
+  halt 404, { 'Content-Type' => 'application/json' }, { error: 'FAQ not found' }.to_json unless File.file?(path)
+
+  data = load_json(path)
+  halt 500, { 'Content-Type' => 'application/json' }, { error: 'FAQ data invalid' }.to_json unless data.is_a?(Array)
+
+  content_type :json
+  { items: data }.to_json
 end
 
 get '/api/health' do

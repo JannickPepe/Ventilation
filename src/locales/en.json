@@ -7,7 +7,8 @@
       "services": "Services",
       "about": "About",
       "contact": "Contact",
-      "searchPlaceholder": "Search..."
+      "searchPlaceholder": "Search...",
+      "searchAriaLabel": "Search page sections by heading"
     },
     "hero": {
       "badge": "Professional Ventilation",
@@ -46,6 +47,9 @@
     "benefits": {
       "title": "Why Choose Us",
       "subtitle": "Quality service you can trust.",
+      "healthBlockTitle": "The system and the science",
+      "healthBlockDesc": "Balanced air exchange, heat recovery, and optimal humidity support mold prevention, energy efficiency, and improved health.",
+      "healthBlockImgAlt": "Diagram: balanced air exchange, heat recovery in action, and key scientific benefits including improved health.",
       "items": {
         "certified": {
           "title": "Certified Technicians",
@@ -68,8 +72,44 @@
     "cta": {
       "title": "Ready to Improve Your Air Quality?",
       "subtitle": "Get in touch today for a free consultation and quote.",
-      "button": "Contact Us"
+      "button": "Contact Us",
+      "coverImgAlt": "Infographic about home ventilation: air exchange and flow, whole-house MVHR system, benefits of good ventilation such as filtered air and moisture control, pitfalls of inadequate ventilation including mold and trapped pollutants, and the system science with heat recovery up to 90% efficiency.",
+      "ctaImgAlt": "Diagram: Ventilation in action – whole-house MVHR system showing supply and exhaust air flow, heat recovery unit, and continuous cycle for improved health and comfort."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Quick answers about ventilation and our services."
+    },
+    "ventilationConcepts": {
+      "title": "Healthy Home Ventilation",
+      "subtitle": "Understand air exchange, benefits, and why good ventilation matters.",
+      "airExchangeTitle": "Air Exchange and Flow",
+      "airExchangeAlt": "Diagram of continuous air exchange and supply vs exhaust flow",
+      "airExchangeDesc": "Continuous cycle of fresh air in and stale air out. ACH (Air Changes per Hour) keeps indoor air healthy.",
+      "pitfallsTitle": "Pitfalls of Inadequate Ventilation",
+      "pitfallsAlt": "Causes and consequences of poor ventilation in a sealed home",
+      "pitfallsDesc": "Trapped pollutants, excess moisture, and health impacts. Good ventilation prevents these problems.",
+      "systemScienceImgAlt": "Diagram: balanced air exchange, heat recovery in action, and key scientific benefits including improved health.",
+      "systemScienceTitle": "The system and the science",
+      "systemScienceDesc": "Balanced air exchange, heat recovery, and optimal humidity support mold prevention, energy efficiency, and improved health."
     }
+  },
+  "footer": {
+    "logo": "VentPro",
+    "tagline": "Expert ventilation services for your home and business.",
+    "nav": {
+      "title": "Navigation"
+    },
+    "contact": {
+      "title": "Contact",
+      "text": "Get in touch for a free consultation and quote."
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "copyright": "© VentPro. All rights reserved."
   },
   "common": {
     "language": "Language",
