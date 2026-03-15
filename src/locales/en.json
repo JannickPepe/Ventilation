@@ -1,0 +1,78 @@
+{
+  "home": {
+    "title": "Huso",
+    "subtitle": "Advanced Vue project ready.",
+    "header": {
+      "logo": "VentPro",
+      "services": "Services",
+      "about": "About",
+      "contact": "Contact",
+      "searchPlaceholder": "Search..."
+    },
+    "hero": {
+      "badge": "Professional Ventilation",
+      "title": "Expert Ventilation Services for Your Home & Business",
+      "subtitle": "From installation to repair and maintenance—certified technicians ready to ensure optimal air quality.",
+      "cta": "Book a Consultation",
+      "secondary": "View Services"
+    },
+    "services": {
+      "title": "Our Services",
+      "subtitle": "Full range of ventilation solutions tailored to your needs.",
+      "learnMore": "Learn more",
+      "items": {
+        "setup": {
+          "label": "Setup",
+          "title": "Installation",
+          "desc": "Professional installation of ventilation systems for new builds and renovations."
+        },
+        "repair": {
+          "label": "Repair",
+          "title": "Repairs",
+          "desc": "Fast, reliable repair of ventilation units and ductwork."
+        },
+        "inspection": {
+          "label": "Inspection",
+          "title": "Inspection",
+          "desc": "Thorough inspection and assessment of your ventilation system."
+        },
+        "maintenance": {
+          "label": "Maintenance",
+          "title": "Maintenance",
+          "desc": "Regular maintenance plans to keep your system running efficiently."
+        }
+      }
+    },
+    "benefits": {
+      "title": "Why Choose Us",
+      "subtitle": "Quality service you can trust.",
+      "items": {
+        "certified": {
+          "title": "Certified Technicians",
+          "desc": "All our technicians are fully certified and trained."
+        },
+        "fast": {
+          "title": "Fast Response",
+          "desc": "Same-day or next-day service when you need it most."
+        },
+        "warranty": {
+          "title": "Warranty Included",
+          "desc": "Peace of mind with comprehensive warranty on all work."
+        },
+        "expert": {
+          "title": "Expert Advice",
+          "desc": "Honest recommendations for the best ventilation solution."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Improve Your Air Quality?",
+      "subtitle": "Get in touch today for a free consultation and quote.",
+      "button": "Contact Us"
+    }
+  },
+  "common": {
+    "language": "Language",
+    "loading": "Loading..."
+  }
+}

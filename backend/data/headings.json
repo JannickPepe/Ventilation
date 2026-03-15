@@ -1,0 +1,14 @@
+[
+  { "key": "home.hero.title", "tag": "h1", "route": "/", "id": "hero" },
+  { "key": "home.services.title", "tag": "h2", "route": "/", "id": "services" },
+  { "key": "home.benefits.title", "tag": "h2", "route": "/", "id": "benefits" },
+  { "key": "home.cta.title", "tag": "h2", "route": "/", "id": "cta" },
+  { "key": "home.services.items.setup.title", "tag": "h3", "route": "/", "id": "service-setup" },
+  { "key": "home.services.items.repair.title", "tag": "h3", "route": "/", "id": "service-repair" },
+  { "key": "home.services.items.inspection.title", "tag": "h3", "route": "/", "id": "service-inspection" },
+  { "key": "home.services.items.maintenance.title", "tag": "h3", "route": "/", "id": "service-maintenance" },
+  { "key": "home.benefits.items.certified.title", "tag": "h3", "route": "/", "id": "benefit-certified" },
+  { "key": "home.benefits.items.fast.title", "tag": "h3", "route": "/", "id": "benefit-fast" },
+  { "key": "home.benefits.items.warranty.title", "tag": "h3", "route": "/", "id": "benefit-warranty" },
+  { "key": "home.benefits.items.expert.title", "tag": "h3", "route": "/", "id": "benefit-expert" }
+]

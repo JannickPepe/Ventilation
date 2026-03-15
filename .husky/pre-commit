@@ -1,0 +1,3 @@
+npx lint-staged
+npm run test:run
+npx vue-tsc --noEmit

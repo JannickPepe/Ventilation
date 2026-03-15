@@ -1,0 +1,78 @@
+{
+  "home": {
+    "title": "Huso",
+    "subtitle": "Avanceret Vue-projekt klar.",
+    "header": {
+      "logo": "VentPro",
+      "services": "Services",
+      "about": "Om os",
+      "contact": "Kontakt",
+      "searchPlaceholder": "Søg..."
+    },
+    "hero": {
+      "badge": "Professionel Ventilation",
+      "title": "Ekspert Ventilationsservice til Hjem & Erhverv",
+      "subtitle": "Fra installation til reparation og vedligeholdelse—certificerede teknikere klar til at sikre optimal luftkvalitet.",
+      "cta": "Book en Konsultation",
+      "secondary": "Se Services"
+    },
+    "services": {
+      "title": "Vores Services",
+      "subtitle": "Fuld portefølje af ventilationsløsninger skræddersyet til dine behov.",
+      "learnMore": "Læs mere",
+      "items": {
+        "setup": {
+          "label": "Setup",
+          "title": "Installation",
+          "desc": "Professionel installation af ventilationssystemer til nye bygninger og renoveringer."
+        },
+        "repair": {
+          "label": "Reparation",
+          "title": "Reparationer",
+          "desc": "Hurtig og pålidelig reparation af ventilationsenheder og kanaler."
+        },
+        "inspection": {
+          "label": "Inspektion",
+          "title": "Inspektion",
+          "desc": "Grundig inspektion og vurdering af dit ventilationssystem."
+        },
+        "maintenance": {
+          "label": "Vedligeholdelse",
+          "title": "Vedligeholdelse",
+          "desc": "Regelmæssige vedligeholdelsesplaner for at holde dit system effektivt."
+        }
+      }
+    },
+    "benefits": {
+      "title": "Hvorfor Vælge Os",
+      "subtitle": "Kvalitetsservice du kan stole på.",
+      "items": {
+        "certified": {
+          "title": "Certificerede Teknikere",
+          "desc": "Alle vores teknikere er fuldt certificerede og uddannede."
+        },
+        "fast": {
+          "title": "Hurtig Reaktion",
+          "desc": "Samme dag eller næste dag service når du har brug for det."
+        },
+        "warranty": {
+          "title": "Garanti Inkluderet",
+          "desc": "Ro i sindet med omfattende garanti på alt arbejde."
+        },
+        "expert": {
+          "title": "Ekspert Rådgivning",
+          "desc": "Ærlige anbefalinger til den bedste ventilationsløsning."
+        }
+      }
+    },
+    "cta": {
+      "title": "Klar til at Forbedre Din Luftkvalitet?",
+      "subtitle": "Kontakt os i dag for en gratis konsultation og tilbud.",
+      "button": "Kontakt Os"
+    }
+  },
+  "common": {
+    "language": "Sprog",
+    "loading": "Indlæser..."
+  }
+}
